@@ -29,6 +29,8 @@ class Product extends Model
 
     public function ingredients(): BelongsToMany
     {
-        return $this->belongsToMany(Ingredient::class)->withTimestamps();
+        return $this->belongsToMany(Ingredient::class)
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
 }
