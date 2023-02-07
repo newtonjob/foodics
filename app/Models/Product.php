@@ -11,6 +11,11 @@ class Product extends Model
     use HasFactory;
 
     /**
+     * The attributes that aren't mass assignable.
+     */
+    protected $guarded = [];
+
+    /**
      * The attributes that should be cast.
      */
     protected $casts = [
