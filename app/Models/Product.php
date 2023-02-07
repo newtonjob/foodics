@@ -16,13 +16,6 @@ class Product extends Model
     protected $guarded = [];
 
     /**
-     * The attributes that should be cast.
-     */
-    protected $casts = [
-        'low_stock_alert_sent_at' => 'datetime'
-    ];
-
-    /**
      * Sellout from the product's ingredient stock, the quantity that was ordered.
      */
     public function sellout(): void
