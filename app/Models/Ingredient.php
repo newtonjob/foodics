@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Observers\HasObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
-    use HasFactory;
+    use HasFactory, HasObserver;
 
     /**
      * The attributes that aren't mass assignable.
