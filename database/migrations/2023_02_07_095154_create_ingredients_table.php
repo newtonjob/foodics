@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->integer('stock');
+            $table->integer('stock')->comment('In Grams');
             $table->integer('low_stock_threshold');
             $table->timestamp('low_stock_alert_sent_at')->nullable();
             $table->timestamps();
