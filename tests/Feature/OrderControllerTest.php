@@ -54,8 +54,9 @@ class OrderControllerTest extends TestCase
 
         $product->fresh()->ingredients->each(function ($ingredient) use ($product) {
             $original = $product->ingredients->find($ingredient);
+            $expected_stock_left = $original->stock - ($ingredient->pivot->quantity * 10);
 
-            $this->assertLessThan($original->stock, $ingredient->stock);
+            $this->assertEquals($expected_stock_left, $ingredient->stock);
         });
     }
 
