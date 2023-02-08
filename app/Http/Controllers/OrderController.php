@@ -14,14 +14,12 @@ class OrderController extends Controller
     {
         $request->validate([
             'products'              => 'required|array',
-            'products.*.product_id' => 'required',
+            'products.*.product_id' => 'required|exists:products,id',
         ]);
 
-        $order = tap(Order::create(['user_id' => $request->user()->id]), function (Order $order) use ($request) {
-            $order->products()->attach(
-                $request->collect('products')->keyBy->product_id->map->only('quantity')
-            );
-        });
+        $order = tap(Order::create(['user_id' => $request->user()->id]),
+            fn (Order $order) => $order->products()->attach($request->products)
+        );
 
         return response(['message' => 'Order placed successfully', 'data' => compact('order')], 201);
     }
