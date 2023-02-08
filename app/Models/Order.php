@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Observers\HasObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Order extends Model
@@ -21,5 +22,10 @@ class Order extends Model
         return $this->belongsToMany(Product::class, OrderProduct::class)
             ->withPivot(['price', 'quantity'])
             ->withTimestamps();
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

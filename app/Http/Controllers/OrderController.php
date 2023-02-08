@@ -17,7 +17,7 @@ class OrderController extends Controller
             'products.*.product_id' => 'required|exists:products,id',
         ]);
 
-        $order = tap(Order::create(['user_id' => $request->user()->id]),
+        $order = tap($request->user()->orders()->create(),
             fn (Order $order) => $order->products()->attach($request->products)
         );
 
